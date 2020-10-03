@@ -7,7 +7,7 @@ This project is to encourage people to plant trees for a reason and and it shows
 # Brag Yourself 😎
 - make a video of you planting a tree and post it in your favorite social media
 - Use the hashtag #pLANTEr and tag your friends
-- Tag me too, my <a href="#end">hey</a>
+- Tag me too, my <a href="#end">social accounts</a>
 
 If you dont have time or place to do it, here are some peoples who can plant trees on behalf of you
 - [TeamTrees](https://teamtrees.org/)
