@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+#avatar {
+    background-image: url("url");
+    width: 200px;
+    height: 200px;
+    background-size: contain;
+    background-position: center;
+    border-radius: 50%;
+}
+
+#brand-logo {
+    font-family: 'Fredoka One', cursive !important;
+}
