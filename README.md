@@ -16,6 +16,7 @@ If you don't have time or place to do it, here are some organzations, to name a 
 - [Tree Nation](https://jeemain.nic.in/jeemainapp/Registration/Instruction.aspx)
 - [Plant For The Planet](https://www.plant-for-the-planet.org/en/home)
 - [Nature](https://www.nature.org/en-us/get-involved/how-to-help/plant-a-billion/)
+- [Ecosia](ecosia.org)
 
 # Contribution
 Please feel free to contribute, any contibution for the development will be accecpted. Yes, even the typo fixes in the README (please don't😅)
