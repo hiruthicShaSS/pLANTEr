@@ -136,7 +136,7 @@ function scrape() {
     document.getElementById("loading").style.display = "block";
 
     fetch(
-            `#<Your localhost or server address>/fetch?username=${username}&getInfo=${getInfo}`
+            `https://planter-server.herokuapp.com/fetch?username=${username}&getInfo=${getInfo}`
         )
         .then((response) => response.json())
         .then((data) => {
