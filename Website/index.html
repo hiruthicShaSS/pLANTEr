@@ -45,8 +45,24 @@
                     <label for="username">GitHub Username</label>
                     <span id="required-username" class="helper-text" data-error="Wrong" data-success="Right"></span>
                 </div>
+                <div class="switch">
+                    <label>
+                      API
+                      <input type="checkbox"  id="switch">
+                      <span class="lever"></span>
+                      Scrape
+                    </label>
+                </div>
             </div>
         </form>
+        <div class="container">
+            <p>
+                <label>
+                  <input id="getInfo" type="checkbox" />
+                  <span>Get account info (will take time)</span>
+                </label>
+            </p>
+        </div>
         <button type="submit" id="get" class="btn-floating btn-medium waves-effect waves-light pulse black"><i class="material-icons prefix">search</i></button>
         <div class="progress" id="loading" style="display: none;">
             <div class="indeterminate"></div>
@@ -54,16 +70,24 @@
     </div>
 
     <div class="container" id="data-section" style="display: none;">
-        <img src="" alt="" id="avatar" class="z-depth-3">
-        <a id="blog" href="">
+        <img src="" alt="user profile" id="avatar" class="z-depth-3">
+        <hr>
+        <a id="blog" href="" target="_blank">
             <i class="fa fa-internet-explorer" style="font-size: 20px; padding: 10px;"></i>
         </a>
-        <a id="link" href="">
+        <a id="link" href="" target="_blank">
             <i class="fa fa-github" style="font-size: 20px; padding: 10px;"></i>
         </a>
+        <a id="twitter" href="" target="_blank">
+            <i class="fa fa-twitter" style="font-size: 20px; padding: 10px;"></i>
+        </a>
+        <p id="bio"></p>
+
         <br>
         <button id="follower-btn" class="waves-effect waves-light btn btn-secondary" data-url=""><span id="followers"></span> followers</button>
         <button id="following-btn" class="waves-effect waves-light btn btn-secondary" data-url=""><span id="following"></span> following</button>
+
+        <p id="data"></p>
     </div>
 
     <div id="modal-error" class="modal">
