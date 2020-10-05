@@ -20,6 +20,17 @@
 
 <br />
 
+### For testing the python server
+API link: ```https://planter-server.herokuapp.com/fetch?username=<username>&getInfo=<bool>```
+
+API refrence:
+  - username -> GitHub username
+  - getInfo -> boolean, for geting user info. False will return only PRs and commit count
+  
+Working site: [Take me](https://hiruthic2002.github.io/pLANTEr/Website/)
+
+  
+
 ### For remote server testing
 Heroku build button is making some issues. If you can fix it kindly make a **PR** or you can just push the fioles in the Python directory to your heroku app
 <!-- [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/hiruthic2002/pLANTEr/tree/main) -->
