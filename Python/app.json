@@ -1,0 +1,7 @@
+{
+  "name": "pLANTEr-server",
+  "description": "Falsk server for pLANTEr",
+  "repository": "https://github.com/heroku/button-sample",
+  "logo": "https://uxwing.com/wp-content/themes/uxwing/download/07-design-and-development/python-programming-language.svg",
+  "keywords": ["flask", "python", "py"]
+}
