@@ -3,6 +3,7 @@
 *.egg
 .env
 .venv
+*.log
 *.manifest
 .installed.cfg
 
