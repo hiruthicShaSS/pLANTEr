@@ -28,6 +28,8 @@ API refrence:
   - getInfo -> boolean, for geting user info. False will return only PRs and commit count
   
 Working site: [Take me](https://hiruthic2002.github.io/pLANTEr/Website/)
+## Important: 
+Toggle the switch to scrape in the site.
 
   
 
