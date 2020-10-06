@@ -194,7 +194,7 @@ for (let i = 0; i < logoutElements.length; i++) {
 }
 
 function signOut() {
-    auth.signOut().then(() => location.replace(`/Website/index.html?signOut=1`)).catch(error => {
+    auth.signOut().then(() => location.replace(`https://hiruthic2002.github.io/pLANTEr/Website/index.html?signOut=1`)).catch(error => {
         document.getElementById("status").innerText = "Log Out Failure!😥";
         document.getElementById("status-info").innerText = `Error message: ${error.message}`;
         $("#modal-error").modal("open");
