@@ -30,7 +30,7 @@ function login() {
     const password = document.getElementById("password").value;
 
     auth.signInWithEmailAndPassword(email, password).then(cred => {
-        location.replace(`/Website/index.html?uid=${cred.user.uid}&email=${email}`);
+        location.replace(`https://hiruthic2002.github.io/pLANTEr/Website/index.html?uid=${cred.user.uid}&email=${email}`);
     }).catch(error => {
         document.getElementById("status").innerText = "Login Failure!😥";
         document.getElementById("status-info").innerText = `Error message: ${error.message}`;
@@ -59,7 +59,7 @@ function login_github() {
     auth.signInWithPopup(provider).then(result => {
         const token = result.credential.accessToken;
         const user = result.user;
-        location.replace(`/Website/index.html?user=GitHub: ${user}&uid=${user.uid}&email=${user.email}`);
+        location.replace(`https://hiruthic2002.github.io/pLANTEr/Website/index.html?user=GitHub: ${user}&uid=${user.uid}&email=${user.email}`);
     }).catch(error => {
         document.getElementById("status").innerText = "OAuth Failure!😥";
         document.getElementById("status-info").innerText = `Error message: ${error.message}`;
@@ -76,7 +76,7 @@ function login_google() {
     auth.signInWithPopup(provider).then(result => {
         const token = result.credential.accessToken;
         const user = result.user;
-        location.replace(`/Website/index.html?user=GitHub: ${user}&uid=${user.uid}&email=${user.email}`);
+        location.replace(`https://hiruthic2002.github.io/pLANTEr/Website/index.html?user=GitHub: ${user}&uid=${user.uid}&email=${user.email}`);
     }).catch(error => {
         document.getElementById("status").innerText = "OAuth Failure!😥";
         document.getElementById("status-info").innerText = `Error message: ${error.message}`;
@@ -86,7 +86,7 @@ function login_google() {
 
 
 function signOut() {
-    auth.signOut().then(() => location.replace(`/Website/index.html?signOut=1`)).catch(error => {
+    auth.signOut().then(() => location.replace(`https://hiruthic2002.github.io/pLANTEr/Website/index.html?signOut=1`)).catch(error => {
         document.getElementById("status").innerText = "Log Out Failure!😥";
         document.getElementById("status-info").innerText = `Error message: ${error.message}`;
         $("#modal-error").modal("open");
