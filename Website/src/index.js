@@ -171,5 +171,6 @@ function scrape() {
 // Mobile NavBAr trigger
 $(document).ready(function() {
     $(".sidenav").sidenav();
+    $('.parallax').parallax();
     $(".modal").modal();
 });
