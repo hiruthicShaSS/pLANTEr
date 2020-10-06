@@ -1,21 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+
 html {
   padding: 0;
   margin: 0;
   height: 100%;
   width: 100%;
 }
+
 #avatar {
-    background-image: url("url");
-    width: 200px;
-    height: 200px;
-    background-size: contain;
-    background-position: center;
-    border-radius: 50%;
+  background-image: url("url");
+  width: 200px;
+  height: 200px;
+  background-size: contain;
+  background-position: center;
+  border-radius: 50%;
 }
 
 #brand-logo {
-    font-family: 'Fredoka One', cursive !important;
+  font-family: "Fredoka One", cursive !important;
 }
 
 .background {

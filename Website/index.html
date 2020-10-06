@@ -177,13 +177,13 @@
     ====
     -->
     <script type="text/paperscript" canvas="background">
-          var alias = project.activeLayer.children
+          var alias = project.activeLayer.children;
 
           function onFrame(event) {
             for (var i = 0; i < alias.length; i++) {
               if (alias[i]) { //if the item exists...
-                alias[i].position.y += alias[i].bounds.width / 2 //move down
-                alias[i].rotate(4) //rotate
+                alias[i].position.y += alias[i].bounds.width / 2; //move down
+                alias[i].rotate(4); //rotate
                 if (alias[i].bounds.top - 100 > view.bounds.height) {
                   // - 100 because the svg is actually a rectangle;
                   //the blossoms were being removed prematurely
@@ -198,9 +198,9 @@
           }
 
       function addFlower(center) {
-          var flower = new Raster("cherryblossom")//get the raster img
-          flower.scale(Math.random() / 10) //make it smaller
-          flower.position = center //center is a function param
+          var flower = new Raster("cherryblossom");//get the raster img
+          flower.scale(Math.random() / 10); //make it smaller
+          flower.position = center; //center is a function param
       }
 
       view.onMouseDown = function(event) {
@@ -208,7 +208,7 @@
           x: event.point.x - 100, //the svg is offset slightly - hardcoded some
           y: event.point.y - 100, //values to make it appear near the cursor
         }
-        addFlower(center)//add the svg
+        addFlower(center);//add the svg
       }
 
           console.log("hello world") //make sure the script works
