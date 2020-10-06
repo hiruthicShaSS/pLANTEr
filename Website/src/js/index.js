@@ -1,3 +1,23 @@
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+var firebaseConfig = {
+    apiKey: "AIzaSyBATld8UXtBo95E5ZE5pCvqMhZ-qEoy-po",
+    authDomain: "planter-4cca6.firebaseapp.com",
+    databaseURL: "https://planter-4cca6.firebaseio.com",
+    projectId: "planter-4cca6",
+    storageBucket: "planter-4cca6.appspot.com",
+    messagingSenderId: "129308553740",
+    appId: "1:129308553740:web:cff6256bd7532e4763b429",
+    measurementId: "G-2NYD7CR74X"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+// Make auth and firestore refrences
+const auth = firebase.auth();
+
+
 document.getElementById("get").addEventListener("click", chooseMethod);
 
 const base_url = "https://api.github.com";
@@ -168,9 +188,36 @@ function scrape() {
         });
 }
 
-// Mobile NavBAr trigger
+const logoutElements = document.getElementsByClassName("logout");
+for (let i = 0; i < logoutElements.length; i++) {
+    logoutElements[i].addEventListener("click", signOut);
+}
+
+function signOut() {
+    auth.signOut().then(() => location.replace(`/Website/index.html?signOut=1`)).catch(error => {
+        document.getElementById("status").innerText = "Log Out Failure!😥";
+        document.getElementById("status-info").innerText = `Error message: ${error.message}`;
+        $("#modal-error").modal("open");
+    })
+}
+
+
 $(document).ready(function() {
     $(".sidenav").sidenav();
     $('.parallax').parallax();
     $(".modal").modal();
+
+
+    const param = new URLSearchParams(window.location.search);
+    const uid = param.get("uid");
+    const email = (param.get("email") == null) ? "Login" : param.get("email");
+
+    const loginElements = document.getElementsByClassName("login")
+    for (let i = 0; i < loginElements.length; i++) {
+        loginElements[i].innerHTML = `${email}<i class="material-icons right">arrow_drop_down</i>`;
+    }
+
+    if (uid != null) {
+        $(".dropdown-trigger").dropdown();
+    }
 });
