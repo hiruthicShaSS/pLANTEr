@@ -33,5 +33,6 @@ function onFrame(event) {
        } 
       
 }}
-console.log(alias[0].position)
 
+
+console.log("hello world")
