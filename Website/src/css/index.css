@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-#avatar {
+#avatar,
+#user_pic {
     background-image: url("url");
     width: 200px;
     height: 200px;

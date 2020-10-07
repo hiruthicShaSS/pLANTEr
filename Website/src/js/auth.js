@@ -19,6 +19,12 @@ const auth = firebase.auth();
 const auth_ = firebase.auth;
 
 
+document.body.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        login();
+    }
+})
+
 document.getElementById("login").addEventListener("click", login);
 document.getElementById("register").addEventListener("click", register);
 
@@ -28,13 +34,33 @@ document.getElementById("login-google").addEventListener("click", login_google);
 const load = () => document.getElementById("loading").style.display = "block";
 const unLoad = () => document.getElementById("loading").style.display = "none";
 
+const param = new URLSearchParams(window.location.search);
+
+function postLogin(loc) {
+    if (document.getElementById("remember").checked) {
+        // TODO: Presistent login
+
+        // auth.setPersistence(auth_.Auth.Persistense.LOCAL).catch(() => {
+        //     document.getElementById("status").innerText = "Something went wrong!😥";
+        //     document.getElementById("status-info").innerText = `Error message: ${error.message}`;
+        //     $("#modal-error").modal("open");
+        // })
+    }
+
+    location.replace(loc);
+}
+
 function login() {
     load();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
     auth.signInWithEmailAndPassword(email, password).then(cred => {
-        location.replace(`https://hiruthic2002.github.io/pLANTEr/Website/index.html?uid=${cred.user.uid}&email=${email}`);
+        if (parseInt(param.get("relogin")) == 1) {
+            location.replace(`index.html?uid=${cred.user.uid}&email=${email}&relogin=1`);
+            return;
+        }
+        postLogin(`index.html?uid=${cred.user.uid}&email=${email}`);
     }).catch(error => {
         unLoad();
         document.getElementById("status").innerText = "Login Failure!😥";
@@ -52,7 +78,7 @@ function register() {
         document.getElementById("status").innerText = "Registration Success!😀";
         document.getElementById("status-info").innerText = `This is your UID: ${cred.user.uid}`;
         $("#modal-error").modal("open");
-        document.getElementById("ok").addEventListener("click", location.replace(`https://hiruthic2002.github.io/pLANTEr/Website/index.html?uid=${cred.user.uid}&email=${email}`));
+        document.getElementById("ok").addEventListener("click", postLogin(`index.html?uid=${cred.user.uid}&email=${email}`));
     }).catch(error => {
         unload();
         document.getElementById("status").innerText = "Registration Failure!😥";
@@ -68,7 +94,11 @@ function login_github() {
     auth.signInWithPopup(provider).then(result => {
         const token = result.credential.accessToken;
         const user = result.user;
-        location.replace(`https://hiruthic2002.github.io/pLANTEr/Website/index.html?user=GitHub: ${user}&uid=${user.uid}&email=${user.email}`);
+        if (parseInt(param.get("relogin")) == 1) {
+            location.replace(`index.html?user=GitHub: ${user}&uid=${user.uid}&email=${user.email}&relogin=1`);
+            return;
+        }
+        postLogin(`index.html?user=GitHub: ${user}&uid=${user.uid}&email=${user.email}`);
     }).catch(error => {
         unload();
         document.getElementById("status").innerText = "OAuth Failure!😥";
@@ -87,7 +117,11 @@ function login_google() {
     auth.signInWithPopup(provider).then(result => {
         const token = result.credential.accessToken;
         const user = result.user;
-        location.replace(`https://hiruthic2002.github.io/pLANTEr/Website/index.html?user=GitHub: ${user}&uid=${user.uid}&email=${user.email}`);
+        if (parseInt(param.get("relogin")) == 1) {
+            location.replace(`index.html?user=GitHub: ${user}&uid=${user.uid}&email=${user.email}&relogin=1`);
+            return;
+        }
+        postLogin(`index.html?user=GitHub: ${user}&uid=${user.uid}&email=${user.email}`);
     }).catch(error => {
         unload();
         document.getElementById("status").innerText = "OAuth Failure!😥";
@@ -96,9 +130,22 @@ function login_google() {
     })
 }
 
+document.getElementById("reset-password").addEventListener("click", () => {
+    const email = document.getElementById("email").value;
+    auth.sendPasswordResetEmail(email).then(() => {
+        document.getElementById("status").innerText = "Password reset mail sent!";
+        document.getElementById("status-info").innerText = "";
+        $("#modal-error").modal("open");
+    }).catch(error => {
+        document.getElementById("status").innerText = "Password reset failure!😥";
+        document.getElementById("status-info").innerText = `Error message: ${error.message}`;
+        $("#modal-error").modal("open");
+    })
+})
+
 
 function signOut() {
-    auth.signOut().then(() => location.replace(`https://hiruthic2002.github.io/pLANTEr/Website/index.html?signOut=1`)).catch(error => {
+    auth.signOut().then(() => location.replace(`index.html?signOut=1`)).catch(error => {
         document.getElementById("status").innerText = "Log Out Failure!😥";
         document.getElementById("status-info").innerText = `Error message: ${error.message}`;
         $("#modal-error").modal("open");

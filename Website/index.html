@@ -28,11 +28,11 @@
 
 <body>
     <ul id="dropdown1" class="dropdown-content">
-        <li class="logout"><a href="#!">Logout</a></li>
-        <!-- <li><a href="#!">two</a></li>
+        <li id="account"><a href="#!">Account</a></li>
         <li class="divider"></li>
-        <li><a href="#!">three</a></li> -->
+        <li class="logout"><a href="#!">Logout</a></li>
     </ul>
+
     <!-- <div class="navbar-fixed"> -->
     <nav class="orange lighten-2">
         <div class="navbar-wrapper">
@@ -43,7 +43,7 @@
                 <li><a href="#getStarted">Plant</a></li>
                 <li><a href="#FAQ">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li class="logout"><a class="dropdown-trigger login" href="https://hiruthic2002.github.io/pLANTEr/Website/accounts.html" data-target="dropdown1">Login<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger login" href="accounts.html" data-target="dropdown1">Login<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </div>
     </nav>
@@ -54,7 +54,7 @@
         <li><a href="#getStarted">Plant</a></li>
         <li><a href="#FAQ">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a class="dropdown-trigger login" href="https://hiruthic2002.github.io/pLANTEr/Website/accounts.html" data-target="dropdown1">Login<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger login" href="accounts.html" data-target="dropdown1">Login<i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
 
     <div id="index-banner" class="parallax-container" id="home">
@@ -203,6 +203,63 @@
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Understood</a>
+        </div>
+    </div>
+
+    <div id="modal-account" class="modal">
+        <div class="modal-content">
+            <h4>Your account</h4>
+            <blockquote>You can change your settings here</blockquote>
+
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img src="res/tree.png" alt="User profile pic" id="user_pic" class="z-depth-3" />
+                    <br>
+                    <input type="file" id="upload_profile_pic">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">email</i>
+                                        <input id="email" type="text" class="validate" />
+                                        <label for="email">Email</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <input id="name" type="text" class="validate" />
+                                        <label for="name">Name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">lock</i>
+                                        <input id="password" type="password" class="validate" />
+                                        <label for="password">Password</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="progress" id="update-loading" style="display: none;">
+                        <div class="indeterminate"></div>
+                    </div>
+                    <div class="card-action">
+                        <div class="btn green" id="save">
+                            <i class="material-icons prefix left">save</i>
+                            <a href="#" class="black-text">Save</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
         </div>
     </div>
 

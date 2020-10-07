@@ -18,6 +18,7 @@ firebase.analytics();
 const auth = firebase.auth();
 
 
+document.getElementById("account").addEventListener("click", () => $("#modal-account").modal("open"));
 document.getElementById("get").addEventListener("click", chooseMethod);
 
 const base_url = "https://api.github.com";
@@ -200,12 +201,60 @@ for (let i = 0; i < logoutElements.length; i++) {
 }
 
 function signOut() {
-    auth.signOut().then(() => location.replace(`https://hiruthic2002.github.io/pLANTEr/Website/index.html?signOut=1`)).catch(error => {
+    auth.signOut().then(() => location.replace(`index.html?signOut=1`)).catch(error => {
         document.getElementById("status").innerText = "Log Out Failure!😥";
         document.getElementById("status-info").innerText = `Error message: ${error.message}`;
         $("#modal-error").modal("open");
     })
 }
+
+document.getElementById("save").addEventListener("click", () => {
+    document.getElementById("update-loading").style.display = "block";
+    const email = document.getElementById("email").value;
+    const name = document.getElementById("name").value;
+
+    if (email != "") {
+        const user = auth.currentUser;
+
+        if (user) {
+            // update name
+            user.updateProfile({
+                displayName: name
+            });
+            // Update email
+            user.updateEmail(email).then(() => {
+                    document.getElementById("update-loading").style.display = "none";
+                    M.toast({ html: "User info updated!" });
+                }).catch(err => {
+                    document.getElementById("update-loading").style.display = "none";
+                    M.toast({ html: `An error occured: ${err.message}` });
+                    if (err.code == "auth/requires-recent-login") {
+                        setTimeout(() => {
+                            if (confirm("Do you want to re-login to change your email ?")) {
+                                location.replace("accounts.html?relogin=1");
+                            }
+                        }, 3000);
+                    }
+                })
+                // Update password
+            user.updatePassword(password).catch(err => {
+                document.getElementById("update-loading").style.display = "none";
+                M.toast({ html: `An error occured: ${err.message}` });
+                if (err.code == "auth/requires-recent-login") {
+                    setTimeout(() => {
+                        if (confirm("Do you want to re-login to change your password ?")) {
+                            location.replace("accounts.html?relogin=1");
+                        }
+                    }, 3000);
+                }
+            });
+            // Update user profile
+            document.getElementById("upload_profile_pic").addEventListener("click", () => {
+                // TODO: To be implemented
+            })
+        }
+    }
+});
 
 
 $(document).ready(function() {
@@ -224,12 +273,20 @@ $(document).ready(function() {
     const uid = param.get("uid");
     const email = (param.get("email") == null) ? "Login" : param.get("email");
 
-    const loginElements = document.getElementsByClassName("login")
-    for (let i = 0; i < loginElements.length; i++) {
-        loginElements[i].innerHTML = `${email}<i class="material-icons right">arrow_drop_down</i>`;
-    }
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            const loginElements = document.getElementsByClassName("login")
+            for (let i = 0; i < loginElements.length; i++) {
+                loginElements[i].innerHTML = `${user.email}<i class="material-icons right">arrow_drop_down</i>`;
+            }
 
-    if (uid != null) {
-        $(".dropdown-trigger").dropdown();
-    }
+            document.getElementById("email").setAttribute("value", user.email);
+            document.getElementById("name").setAttribute("value", (user.displayName == null) ? "" : user.displayName);
+
+            if (parseInt(param.get("relogin")) == 1) {
+                $("#modal-account").modal("open");
+            }
+            $(".dropdown-trigger").dropdown();
+        }
+    })
 });
