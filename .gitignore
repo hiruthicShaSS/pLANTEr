@@ -27,3 +27,5 @@ ENV/
 .eggs/
 
 __pycache__/
+
+.DS_Store
