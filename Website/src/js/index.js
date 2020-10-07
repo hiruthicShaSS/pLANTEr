@@ -148,7 +148,10 @@ function get() {
     }
 }
 
+let timer = 0;
+
 function scrape() {
+    setInterval(() => timer++, 1000);
     let username = document.getElementById("username").value;
     let getInfo = document.getElementById("getInfo").checked;
 
@@ -185,6 +188,9 @@ function scrape() {
             document.getElementById("data-section").style.display = "block";
             document.getElementById("loading").style.display = "none";
             console.log(data);
+
+            M.toast({ html: `Scraping completed in ${parseFloat(data.time).toPrecision(2)} seconds<br>
+            Total time taken: ${timer} seconds` });
         });
 }
 
@@ -203,9 +209,15 @@ function signOut() {
 
 
 $(document).ready(function() {
-    $(".sidenav").sidenav();
+    $(".sidenav").sidenav({
+        menuWidth: 300, // Default is 300
+        edge: 'left', // Choose the horizontal origin
+        closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        draggable: true, // Choose whether you can drag to open on touch screens,
+    });
     $('.parallax').parallax();
     $(".modal").modal();
+    $('.collapsible').collapsible();
 
 
     const param = new URLSearchParams(window.location.search);

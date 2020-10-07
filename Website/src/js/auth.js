@@ -25,13 +25,18 @@ document.getElementById("register").addEventListener("click", register);
 document.getElementById("login-github").addEventListener("click", login_github);
 document.getElementById("login-google").addEventListener("click", login_google);
 
+const load = () => document.getElementById("loading").style.display = "block";
+const unLoad = () => document.getElementById("loading").style.display = "none";
+
 function login() {
+    load();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
     auth.signInWithEmailAndPassword(email, password).then(cred => {
         location.replace(`https://hiruthic2002.github.io/pLANTEr/Website/index.html?uid=${cred.user.uid}&email=${email}`);
     }).catch(error => {
+        unLoad();
         document.getElementById("status").innerText = "Login Failure!😥";
         document.getElementById("status-info").innerText = `Error message: ${error.message}`;
         $("#modal-error").modal("open");
@@ -39,6 +44,7 @@ function login() {
 }
 
 function register() {
+    load();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
@@ -46,7 +52,9 @@ function register() {
         document.getElementById("status").innerText = "Registration Success!😀";
         document.getElementById("status-info").innerText = `This is your UID: ${cred.user.uid}`;
         $("#modal-error").modal("open");
+        document.getElementById("ok").addEventListener("click", location.replace(`https://hiruthic2002.github.io/pLANTEr/Website/index.html?uid=${cred.user.uid}&email=${email}`));
     }).catch(error => {
+        unload();
         document.getElementById("status").innerText = "Registration Failure!😥";
         document.getElementById("status-info").innerText = `Error message: ${error.message}`;
         $("#modal-error").modal("open");
@@ -54,6 +62,7 @@ function register() {
 }
 
 function login_github() {
+    load();
     const provider = new auth_.GithubAuthProvider();
     provider.addScope("user");
     auth.signInWithPopup(provider).then(result => {
@@ -61,6 +70,7 @@ function login_github() {
         const user = result.user;
         location.replace(`https://hiruthic2002.github.io/pLANTEr/Website/index.html?user=GitHub: ${user}&uid=${user.uid}&email=${user.email}`);
     }).catch(error => {
+        unload();
         document.getElementById("status").innerText = "OAuth Failure!😥";
         document.getElementById("status-info").innerText = `Error message: ${error.message}`;
         $("#modal-error").modal("open");
@@ -68,6 +78,7 @@ function login_github() {
 }
 
 function login_google() {
+    load();
     const provider = new auth_.GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
     provider.setCustomParameters({
@@ -78,6 +89,7 @@ function login_google() {
         const user = result.user;
         location.replace(`https://hiruthic2002.github.io/pLANTEr/Website/index.html?user=GitHub: ${user}&uid=${user.uid}&email=${user.email}`);
     }).catch(error => {
+        unload();
         document.getElementById("status").innerText = "OAuth Failure!😥";
         document.getElementById("status-info").innerText = `Error message: ${error.message}`;
         $("#modal-error").modal("open");
