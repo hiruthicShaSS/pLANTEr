@@ -6,6 +6,7 @@
 *.log
 *.manifest
 .installed.cfg
+*.cache
 
 node_modules/
 

@@ -155,15 +155,21 @@ function scrape() {
     setInterval(() => timer++, 1000);
     let username = document.getElementById("username").value;
     let getInfo = document.getElementById("getInfo").checked;
+    let cache = document.getElementById("cache").checked;
 
     document.getElementById("get").style.display = "none";
     document.getElementById("loading").style.display = "block";
 
     fetch(
-            `https://planter-server.herokuapp.com/fetch?username=${username}&getInfo=${getInfo}`
+            `https://planter-server.herokuapp.com/fetch?username=${username}&getInfo=${(getInfo) ? 1 : 0}&force=${(cache) ? 1 : 0}`
         )
         .then((response) => response.json())
         .then((data) => {
+            if (parseInt(data.code) == 400) {
+                console.log(data.message);
+                return
+            }
+
             document
                 .getElementById("avatar")
                 .setAttribute("src", data.info.image_url);

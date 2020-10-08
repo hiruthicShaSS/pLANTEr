@@ -1,38 +1,59 @@
 from flask.globals import request
+from werkzeug.exceptions import BadRequest
 from flask.json import jsonify
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from bs4 import BeautifulSoup
-import html2text
 from re import findall
 from flask import Flask
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 import time
 import os
+import pickle
 
 
 app = Flask(__name__)
 CORS(app)
 
-chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--disable-dev-shm-usage")
-chrome_options.add_argument("--no-sandbox")
-chrome = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+# chrome_options = webdriver.ChromeOptions()
+# chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+# chrome_options.add_argument("--headless")
+# chrome_options.add_argument("--disable-dev-shm-usage")
+# chrome_options.add_argument("--no-sandbox")
+# chrome = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
+chrome = webdriver.Chrome("D:/chromedriver.exe")
+
+def checkCache(username):
+    return os.path.exists(f"{username}.cache")
 
 
 @app.route("/fetch", methods=["GET"])
 def fetch():
-    os.system("cls")
-    start = time.time()
-    username = str(request.args["username"])
-    getInfo = str(request.args["getInfo"])
+    username = None
+    getInfo = 0
+    force = 0
+    try:
+        username = str(request.args["username"])
+        force = int(request.args["force"])
+        getInfo = int(request.args["getInfo"])
+    except BadRequest as e:
+        return jsonify({
+            "code": e.code,
+            "description": e.description,
+        })
 
+    if (force == 0) and checkCache(username):
+        data = None
+        with open(f"{username}.cache", "rb") as file:
+            data = pickle.load(file)
+            data["time"] = "cache"
+        return jsonify(data)
+
+    start = time.time()
     data = {"info": {}}
 
-    if getInfo == "true":
+    if getInfo== 1:
         chrome.get(f"https://github.com/{username}")
         try:
             data["info"]["image_url"] = chrome.find_element_by_xpath("/html[1]/body[1]/div[4]/main[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/a[1]/img[1]").get_attribute("src")
@@ -67,6 +88,9 @@ def fetch():
 
     data["data"] = numbers
     data["time"] = time.time() - start
+
+    with open(username, "wb") as file:
+        pickle.dump(data, file)
 
     return jsonify(data)
 
