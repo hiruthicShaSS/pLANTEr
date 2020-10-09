@@ -24,6 +24,7 @@ Also check the <a href="/Templates">Templates</a> folder for issue / PR template
 # Idea
 To make a website which gets the information of the GitHub user and creates some animation of growing trees and forest kinda things. And an aproximation of how many trees could a use have been planted, if they plant a tree for a PR or a commit.
 
+## Contact personally
 [![Github Badge](https://img.shields.io/badge/-Hiruthic-gray?style=flat-square&logo=github&logoColor=black&link=https://github.com/hiruthic2002)](https://github.com/hiruthic2002)
 [![Linkedin Badge](https://img.shields.io/badge/-Hiruthic.S.S-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/hiruthic-s-s/)](https://www.linkedin.com/in/hiruthic-s-s/) 
 [![Instagram Badge](https://img.shields.io/badge/-hiruthicsha-red?style=flat-square&logo=instagram&logoColor=black&link=https://www.instagram.com/hiruthicsha/)](https://www.instagram.com/hiruthicsha/) 
