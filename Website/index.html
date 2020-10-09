@@ -43,7 +43,7 @@
                 <li><a href="#getStarted">Plant</a></li>
                 <li><a href="#FAQ">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a class="dropdown-trigger login" href="accounts.html" data-target="dropdown1">Login<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger login" href="accounts.html" data-target="dropdown1">Login</a></li>
             </ul>
         </div>
     </nav>
@@ -54,7 +54,7 @@
         <li><a href="#getStarted">Plant</a></li>
         <li><a href="#FAQ">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a class="dropdown-trigger login" href="accounts.html" data-target="dropdown1">Login<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger login" href="accounts.html" data-target="dropdown1">Login</a></li>
     </ul>
 
     <div id="index-banner" class="parallax-container" id="home">
@@ -124,14 +124,6 @@
                     <input type="text" id="username" class="validate">
                     <label for="username">GitHub Username</label>
                     <span id="required-username" class="helper-text" data-error="Wrong" data-success="Right"></span>
-                </div>
-                <div class="switch">
-                    <label>
-                      API
-                      <input type="checkbox" id="switch" checked>
-                      <span class="lever"></span>
-                      Scrape
-                    </label>
                 </div>
             </div>
         </form>
@@ -224,6 +216,9 @@
                     <img src="res/tree.png" alt="User profile pic" id="user_pic" class="z-depth-3" />
                     <br>
                     <input type="file" id="upload_profile_pic">
+                    <progress id="file_upload_status" max="100"> 0% </progress>
+                    <hr>
+                    <span id="error_code"></span>
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">
@@ -339,6 +334,8 @@
     <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-analytics.js"></script>
     <!-- Firebase Auth -->
     <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
+    <!-- Firebase Storage -->
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-storage.js"></script>
     <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <!-- just github-api source (5.3kb) -->
