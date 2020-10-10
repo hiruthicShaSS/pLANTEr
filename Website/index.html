@@ -11,6 +11,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- IntroJS CSS -->
+    <link rel="stylesheet" href="src/css/introjs.css">
+
     <!-- Style -->
     <link rel="stylesheet" href="src/css/index.css" />
 
@@ -70,7 +73,7 @@
                     <h5 class="header col s12 yellow-text darken-4">Move the technology towards nature. Its the place</h5>
                 </div>
                 <div class="row center">
-                    <a href="#getStarted" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+                    <a href="#getStarted" id="download-button step1" class="btn-large waves-effect waves-light teal lighten-1" data-intro="Hello, Lets start with introduction!" data-step=1>Get Started</a>
                 </div>
                 <br><br>
 
@@ -79,7 +82,7 @@
         <div class="parallax"><img src="res/background5.jpg" alt="Background image 1"></div>
     </div>
 
-    <div class="container">
+    <div class="container" data-intro="Just a information on why to do this" data-step=2>
         <div class="section">
 
             <!--   Icon Section   -->
@@ -118,7 +121,7 @@
         </div>
     </div>
 
-    <div class="container row" id="getStarted">
+    <div class="container row" id="getStarted" data-intro="Here is where the transformation's happens" data-step=5>
         <form action="" class="col s12">
             <div class="row">
                 <h3 class="center">How about calculating your past!</h3>
@@ -175,7 +178,7 @@
         <button class="waves-effect waves-light btn btn-primary green"><i class="material-icons left">nature_people</i>Plant</button>
     </div>
 
-    <div class="container row" id="FAQ">
+    <div class="container row" id="FAQ" data-intro="If you have any questions" data-step=3>
         <form action="" class="col s12">
             <div class="row">
                 <h3 class="center">FAQ's</h3>
@@ -287,21 +290,21 @@
 
     <hr>
 
-    <iframe width="620" height="320" src="https://strawpoll.com/embed/341rzfpuu" style="width: 100%; height: 320px;" frameborder="0" allowfullscreen></iframe>
+    <iframe width="620" height="320" src="https://strawpoll.com/embed/341rzfpuu" style="width: 100%; height: 320px;" frameborder="0" allowfullscreen data-intro="For developers, if you are not one jus skip this part" data-step=4></iframe>
 
     <hr>
 
     <footer class="page-footer teal" id="contact">
         <div class="container">
             <div class="row">
-                <div class="col l6 s12">
+                <div class="col l6 s12" data-intro="Just a small info of why we started" data-step=6>
                     <h5 class="white-text">pLANTEr Bio</h5>
                     <p class="grey-text text-lighten-4">We are a team of like minded people who are trying to make a change in the world for better future and a healthy living. There is no specific contries to participate in this community as far as you live in earth you are allowed. We
                         alos invite extraterrestrial beings if they can help!</p>
 
                 </div>
 
-                <div class="col l3 s12">
+                <div class="col l3 s12" data-intro="If you waana have a talk with me" data-step=7>
                     <h5 class="white-text">Connect</h5>
                     <ul>
                         <li><a class="white-text" href="https://github.com/hiruthic2002/pLANTEr">GitHub</a></li>
@@ -310,7 +313,7 @@
                         <li><a class="white-text" href="mailto:predatorsha2002@gmail.com">Personal Mail</a></li>
                     </ul>
                 </div>
-                <div class="col l3 s12">
+                <div class="col l3 s12" data-intro="Wanna contribute?" data-step=8>
                     <h5 class="white-text">Misc</h5>
                     <ul>
                         <li><a href="https://github.com/hiruthic2002/pLANTEr" class="white-text">Contribute</a></li>
@@ -346,6 +349,8 @@
     <script src="https://unpkg.com/github-api/dist/GitHub.min.js"></script>
     <!-- Smooth Scrool Effect -->
     <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js"></script>
+    <!-- Intro JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js" integrity="sha512-VTd65gL0pCLNPv5Bsf5LNfKbL8/odPq0bLQ4u226UNmT7SzE4xk+5ckLNMuksNTux/pDLMtxYuf0Copz8zMsSA==" crossorigin="anonymous"></script>
 
     <!-- My scripts -->
     <script src="src/js/index.js" defer></script>
@@ -366,7 +371,7 @@
             speedAsDuration: true,
             easing: "easeInOutQuad",
             // History
-            updateURL: true, // Update the URL on scroll
+            // updateURL: true, // Update the URL on scroll
             popstate: true,
         });
     </script>
