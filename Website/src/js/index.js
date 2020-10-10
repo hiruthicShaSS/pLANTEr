@@ -63,8 +63,8 @@ document.getElementById("upload_profile_pic").addEventListener("change", (e) => 
     file = e.target.files[0];
 
     uploadImage = new Promise((resolve, reject) => {
-        var metadata = { contentType: 'image/jpeg' };
-        const uploadTask = storageRef.child(`${UID}/profile_pic.jpg`).put(file, metadata);
+        var metadata = { contentType: 'image/.*', size: file.size };
+        const uploadTask = storageRef.child(`/users/${UID}/profile_pic.jpg`).put(file, metadata);
 
         // Listen for changes in upload
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, (snapshot => {
@@ -82,13 +82,13 @@ document.getElementById("upload_profile_pic").addEventListener("change", (e) => 
                     break;
             }
         }, (error) => {
-            switch (error.code) {
+            switch (error.code_) {
                 case 'storage/unauthorized':
                     document.getElementById("error_code").innerHTML = `<p style="color: red">You are unauthorized</p>`;
                     break;
 
                 case 'storage/canceled':
-                    document.getElementById("error_code").innerHTML = `<p style="color: red">You cancelled the upload</p>`;
+                    document.getElementById("error_code").innerHTML = `<p style="color: red">Upload cancelled</p>`;
                     break;
 
                 case "storage/object-not-found":
@@ -97,6 +97,9 @@ document.getElementById("upload_profile_pic").addEventListener("change", (e) => 
                 case 'storage/unknown':
                     // Unknown error occurred, inspect error.serverResponse
                     document.getElementById("error_code").innerHTML = `<p style="color: red">Unknown error occurred, ${error.serverResponse}</p>`;
+                    break;
+                default:
+                    document.getElementById("error_code").innerHTML = `<p style="color: red">${error.message_}</p>`
                     break;
             }
             reject(error.code);
@@ -260,10 +263,10 @@ $(document).ready(function() {
             UID = user.uid
             const loginElements = document.getElementsByClassName("login")
             for (let i = 0; i < loginElements.length; i++) {
-                loginElements[i].innerHTML = `${user.email}<i class="material-icons right">arrow_drop_down</i>`;
+                loginElements[i].innerHTML = `<img src="${(user.photoURL == null) ? "res/tree.png" : user.photoURL}" alt="user profile pic" id="avatar-account" class="z-depth-1 left circle responsive-img">${user.email}`;
             }
 
-            document.getElementById("user_pic").setAttribute("src", user.photoURL);
+            document.getElementById("user_pic").setAttribute("src", (user.photoURL == null) ? "res/tree.png" : user.photoURL);
             document.getElementById("email").setAttribute("value", user.email);
             document.getElementById("name").setAttribute("value", (user.displayName == null) ? "" : user.displayName);
 

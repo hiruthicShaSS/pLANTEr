@@ -12,7 +12,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Style -->
-    <link rel="stylesheet" href="src/css/index.css"/>
+    <link rel="stylesheet" href="src/css/index.css" />
 
     <!-- Favicon start -->
     <link rel="apple-touch-icon" sizes="180x180" href="res/apple-touch-icon.png">
@@ -56,7 +56,9 @@
         <li><a href="#getStarted">Plant</a></li>
         <li><a href="#FAQ">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a class="dropdown-trigger login" href="accounts.html" data-target="dropdown1">Login</a></li>
+        <li>
+            <a class="dropdown-trigger login" href="accounts.html" data-target="dropdown1">Login</a>
+        </li>
     </ul>
 
     <div id="index-banner" class="parallax-container" id="home">
@@ -211,13 +213,13 @@
     <div id="modal-account" class="modal">
         <div class="modal-content">
             <h4>Your account</h4>
-            <blockquote>You can change your settings here</blockquote>
+            <blockquote>You can change your informations here</blockquote>
 
             <div class="card horizontal">
                 <div class="card-image">
                     <img src="res/tree.png" alt="User profile pic" id="user_pic" class="z-depth-3" />
                     <br>
-                    <input type="file" id="upload_profile_pic">
+                    <input type="file" id="upload_profile_pic" accept=".png, .jpg, .jpeg">
                     <progress id="file_upload_status" max="100"> 0% </progress>
                     <hr>
                     <span id="error_code"></span>
@@ -346,7 +348,7 @@
     <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js"></script>
 
     <!-- My scripts -->
-    <script src="src/js/index.js"></script>
+    <script src="src/js/index.js" defer></script>
 
     <script>
         document.getElementById("follower-btn").addEventListener("click", function() {
