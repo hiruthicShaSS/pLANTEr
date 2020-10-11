@@ -385,7 +385,7 @@ function setCookie(key, val) {
 
 
 $(document).ready(function() {
-    setCookie("visited", "true");
+    // setCookie("visited", "true");
 
     $(".sidenav").sidenav({
         menuWidth: 300, // Default is 300
