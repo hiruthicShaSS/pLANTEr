@@ -30,8 +30,6 @@
 </head>
 
 <body>
-
-
     <ul id="dropdown1" class="dropdown-content">
         <li id="account"><a href="#!">Account</a></li>
         <li class="divider"></li>
@@ -54,6 +52,7 @@
     </nav>
     <!-- </div> -->
 
+    <!-- NavBar for mobiles-->
     <ul class="sidenav" id="mobile-nav">
         <li class="active"><a href="#top">Home</a></li>
         <li><a href="#getStarted">Plant</a></li>
@@ -121,7 +120,8 @@
         </div>
     </div>
 
-    <div class="container row" id="getStarted" data-intro="Here is where the transformation's happens" data-step=5>
+    <!-- Get started section -->
+    <div class="container row center" id="getStarted" data-intro="Here is where the transformation's happens" data-step=5>
         <form action="" class="col s12">
             <div class="row">
                 <h3 class="center">How about calculating your past!</h3>
@@ -154,8 +154,11 @@
         <div class="progress" id="loading" style="display: none;">
             <div class="indeterminate"></div>
         </div>
+        <br><br><br>
+        <div class="btn btn-medium waves-effect amber black-text" id="find-friends" style="display: none;">Find friends</div>
     </div>
 
+    <!-- Fetched user section -->
     <div class="container" id="data-section" style="display: none;">
         <img src="https://img.icons8.com/doodle/480/000000/github--v1.png" alt="user profile" id="avatar" class="z-depth-3">
         <hr>
@@ -178,6 +181,7 @@
         <button class="waves-effect waves-light btn btn-primary green"><i class="material-icons left">nature_people</i>Plant</button>
     </div>
 
+    <!-- FAQ section -->
     <div class="container row" id="FAQ" data-intro="If you have any questions" data-step=3>
         <form action="" class="col s12">
             <div class="row">
@@ -202,6 +206,7 @@
         </form>
     </div>
 
+    <!-- Error modal -->
     <div id="modal-error" class="modal">
         <div class="modal-content">
             <h4>API rate limit exceeded</h4>
@@ -213,6 +218,7 @@
         </div>
     </div>
 
+    <!-- Account Management modal -->
     <div id="modal-account" class="modal">
         <div class="modal-content">
             <h4>Your account</h4>
@@ -273,8 +279,22 @@
         </div>
     </div>
 
+    <div id="modal-find_friends" class="modal">
+        <div class="modal-content">
+            <h4>Start by typing the name</h4>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">search</i>
+                    <input id="friends" type="text" class="validate" />
+                    <label for="text">Search</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <br>
 
+    <!-- Quote on another parallax section -->
     <div class="parallax-container valign-wrapper">
         <div class="section no-pad-bot">
             <div class="container">
@@ -290,10 +310,12 @@
 
     <hr>
 
+    <!-- Poll -->
     <iframe width="620" height="320" src="https://strawpoll.com/embed/341rzfpuu" style="width: 100%; height: 320px;" frameborder="0" allowfullscreen data-intro="For developers, if you are not one jus skip this part" data-step=4></iframe>
 
     <hr>
 
+    <!-- Footer -->
     <footer class="page-footer teal" id="contact">
         <div class="container">
             <div class="row">
@@ -343,6 +365,8 @@
     <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
     <!-- Firebase Storage -->
     <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-storage.js"></script>
+    <!-- Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-firestore.js"></script>
     <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <!-- just github-api source (5.3kb) -->

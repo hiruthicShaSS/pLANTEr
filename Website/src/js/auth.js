@@ -19,6 +19,7 @@ const auth = firebase.auth();
 const auth_ = firebase.auth;
 
 
+// START: Event Binders ================================================================================
 document.body.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
         login();
@@ -30,6 +31,7 @@ document.getElementById("register").addEventListener("click", register);
 
 document.getElementById("login-github").addEventListener("click", login_github);
 document.getElementById("login-google").addEventListener("click", login_google);
+// END: Event Binders ================================================================================
 
 const load = () => document.getElementById("loading").style.display = "block";
 const unLoad = () => document.getElementById("loading").style.display = "none";
@@ -50,6 +52,7 @@ function postLogin(loc) {
     location.replace(loc);
 }
 
+// START: Account Management ==========================================================================
 function login() {
     load();
     const email = document.getElementById("email").value;
@@ -76,6 +79,7 @@ function register() {
 
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
         document.getElementById("status").innerText = "Registration Success!😀";
+        cred.user.updateProfile({ displayName: email.match(/^([^@]*)@/)[1] }); // Not working
         document.getElementById("status-info").innerText = `This is your UID: ${cred.user.uid}`;
         $("#modal-error").modal("open");
         document.getElementById("ok").addEventListener("click", postLogin(`index.html?uid=${cred.user.uid}&email=${email}`));
@@ -87,6 +91,7 @@ function register() {
     });
 }
 
+// Start: OAuth Account Management ======================================================================
 function login_github() {
     load();
     const provider = new auth_.GithubAuthProvider();
@@ -129,7 +134,9 @@ function login_google() {
         $("#modal-error").modal("open");
     })
 }
+// END: OAuth Account Management ========================================================================
 
+// Reset password
 document.getElementById("reset-password").addEventListener("click", () => {
     const email = document.getElementById("email").value;
     auth.sendPasswordResetEmail(email).then(() => {
@@ -151,6 +158,7 @@ function signOut() {
         $("#modal-error").modal("open");
     })
 }
+// END: Account Management ==============================================================================
 
 $(document).ready(function() {
     $(".modal").modal();
