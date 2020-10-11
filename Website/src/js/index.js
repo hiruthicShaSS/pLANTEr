@@ -376,6 +376,7 @@ function setCookie(key, val) {
         return;
     } else {
         introJs().start();
+        setCookie("visited", "true");  // Without this line, introjs pops up in a loop untill cookie has been manually created
         introJs.fn.oncomplete(() => setCookie("visited", "true"));
         introJs.fn.onexit(() => setCookie("visited", "true"));
     }
