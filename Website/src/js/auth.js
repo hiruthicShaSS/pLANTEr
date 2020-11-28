@@ -49,6 +49,10 @@ function postLogin(loc) {
         // })
     }
 
+    if (param.get("halloffame") == "1") {
+        location.replace("halloffame.html")
+        return;
+    }
     location.replace(loc);
 }
 
